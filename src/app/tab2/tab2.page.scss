@@ -1,0 +1,17 @@
+.sucesso {
+  background: var(--ion-color-success);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.erro {
+  background: var(--ion-color-danger);
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  text-align: center;
+}

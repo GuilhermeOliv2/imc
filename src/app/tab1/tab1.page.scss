@@ -1,0 +1,73 @@
+.container {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--ion-color-primary);
+  margin: 30px 0;
+}
+
+ion-item {
+  margin-bottom: 15px;
+}
+
+#resultado-container {
+  background: var(--ion-color-light);
+  padding: 20px;
+  border-radius: 10px;
+  margin: 30px 0;
+  text-align: center;
+  border-left: 4px solid var(--ion-color-primary);
+}
+
+#resultadoIMC {
+  font-size: 1.1em;
+  color: var(--ion-color-dark);
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+/* Controle de telas */
+.tela {
+  display: none;
+}
+
+.tela.ativa {
+  display: block;
+}
+
+/* Ajustes para mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5em;
+  }
+}
+
+.aviso-login {
+  text-align: center;
+  padding: 40px 20px;
+  
+  h2 {
+    color: var(--ion-color-primary);
+    margin-bottom: 20px;
+  }
+  
+  p {
+    color: var(--ion-color-medium);
+    margin-bottom: 30px;
+  }
+}
+
+.usuario-info {
+  text-align: center;
+  color: var(--ion-color-success);
+  font-size: 0.9em;
+  margin-bottom: 20px;
+}
