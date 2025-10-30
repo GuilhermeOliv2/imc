@@ -68,8 +68,25 @@ export class Tab2Page {
       'auth/user-not-found': 'Usuário não encontrado',
       'auth/wrong-password': 'Senha incorreta',
       'auth/email-already-in-use': 'Email já está em uso',
-      'auth/weak-password': 'Senha muito fraca'
+      'auth/weak-password': 'Senha muito fraca',
+      'auth/too-many-requests': 'Muitas tentativas. Tente novamente mais tarde.',
     };
     return erros[codigo] || 'Erro desconhecido';
   }
+
+  async recuperarSenha() {
+    if (!this.email) {
+      this.mensagemErro = 'Digite seu email para recuperar a senha';
+      return;
+    }
+
+    try {
+      await this.afAuth.sendPasswordResetEmail(this.email);
+      this.mensagemSucesso = 'Email de recuperação enviado! Verifique sua caixa de entrada.';
+      this.mensagemErro = '';
+    } catch (error: any) {
+      this.mensagemErro = this.traduzirErro(error.code);
+      this.mensagemSucesso = '';
+    }
+  } 
 }

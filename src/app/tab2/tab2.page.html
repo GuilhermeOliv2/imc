@@ -15,6 +15,10 @@
     <ion-button expand="block" (click)="fazerLogin()">Entrar</ion-button>
     <ion-button expand="block" fill="outline" (click)="criarConta()">Criar Conta</ion-button>
 
+    <ion-button expand="block" fill="clear" size="small" (click)="recuperarSenha()">
+      Esqueci minha senha
+    </ion-button>
+
     <div *ngIf="mensagemSucesso" class="sucesso">
       {{ mensagemSucesso }}
     </div>
