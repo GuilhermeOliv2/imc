@@ -11,6 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgIf } from '@angular/common';
+import mqtt from 'mqtt'; 
 
 @Component({
   selector: 'app-tab1',
@@ -40,10 +41,28 @@ export class Tab1Page {
   usuarioLogado: boolean = false;
   emailUsuario: string = '';
 
+  mqttClient: any;
+  isConnected: boolean = false;
+
   constructor(private afAuth: AngularFireAuth) {}
 
   ngOnInit() {
     this.verificarLogin();
+    this.conectarMQTT(); 
+  }
+
+  conectarMQTT() {
+    this.mqttClient = mqtt.connect('wss://broker.hivemq.com:8884/mqtt');
+    
+    this.mqttClient.on('connect', () => {
+      console.log('✅ Conectado ao MQTT!');
+      this.isConnected = true;
+    });
+
+    this.mqttClient.on('error', (error: any) => {
+      console.error('❌ Erro MQTT:', error);
+      this.isConnected = false;
+    });
   }
 
   verificarLogin() {
@@ -70,6 +89,11 @@ export class Tab1Page {
 
     this.resultadoTexto = `Olá, ${this.nome} (${this.genero}).\nSeu IMC é ${imc.toFixed(2)}\nClassificação: ${classificacao}`;
     this.mostrarResultado = true;
+
+    if (this.mqttClient && this.isConnected) {
+      this.mqttClient.publish('imc/led', 'mudar_cor');
+      console.log('🎨 Comando enviado para LED RGB!');
+    }
   }
 
   validarCampos(): boolean {

@@ -1,17 +1,30 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+    <ion-title>Monitor LED</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div class="container">
+    <h2>Status do LED RGB</h2>
+    
+    <div class="status">
+      MQTT: <span [class]="isConnected ? 'conectado' : 'desconectado'">
+        {{ isConnected ? 'Conectado' : 'Desconectado' }}
+      </span>
+    </div>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+    <div class="led-display" [style.background]="corAtual">
+      <p>Cor Atual do LED</p>
+      <p class="codigo-cor">{{ corAtual }}</p>
+    </div>
+
+    <div class="historico">
+      <h3>Últimas cores:</h3>
+      <div *ngFor="let cor of coresHistorico" class="cor-item">
+        <div class="cor-box" [style.background]="cor"></div>
+        <span>{{ cor }}</span>
+      </div>
+    </div>
+  </div>
 </ion-content>
