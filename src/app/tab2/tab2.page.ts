@@ -9,6 +9,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab2',
@@ -31,7 +32,10 @@ export class Tab2Page {
   mensagemErro: string = '';
   mensagemSucesso: string = '';
 
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private navCtrl: NavController
+  ) {}
 
   async fazerLogin() {
     try {
@@ -39,11 +43,18 @@ export class Tab2Page {
       console.log('Login bem-sucedido:', result.user?.email);
       this.mensagemSucesso = 'Login realizado com sucesso!'
       this.mensagemErro = '';
-      this.mensagemSucesso = '';
-      // Aqui vamos redirecionar para o IMC depois
+      setTimeout(() => {
+        this.navCtrl.navigateRoot('/tabs/tab1');
+      }, 2000);
+      setTimeout(() => {
+        this.mensagemSucesso = '';
+      }, 5000);
     } catch (error: any) {
       this.mensagemErro = this.traduzirErro(error.code);
       this.mensagemSucesso = '';
+      setTimeout(() => {
+        this.mensagemErro = '';
+      }, 5000);
     }
   }
 
@@ -70,6 +81,7 @@ export class Tab2Page {
       'auth/email-already-in-use': 'Email já está em uso',
       'auth/weak-password': 'Senha muito fraca',
       'auth/too-many-requests': 'Muitas tentativas. Tente novamente mais tarde.',
+      'auth/invalid-credential': 'Credencial inválida'
     };
     return erros[codigo] || 'Erro desconhecido';
   }

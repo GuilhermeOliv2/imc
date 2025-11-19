@@ -8,8 +8,9 @@
   <div class="container">
     <h2>Status do LED RGB</h2>
     
-    <div class="status">
-      MQTT: <span [class]="isConnected ? 'conectado' : 'desconectado'">
+    <div class="status-mqtt">
+      MQTT: 
+      <span [class]="isConnected ? 'conectado' : 'desconectado'">
         {{ isConnected ? 'Conectado' : 'Desconectado' }}
       </span>
     </div>

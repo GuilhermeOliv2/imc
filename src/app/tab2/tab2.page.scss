@@ -1,3 +1,20 @@
+.container {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1, h2 {
+  text-align: center;
+  color: var(--ion-color-primary);
+  margin: 30px 0;
+}
+
+ion-item {
+  margin-bottom: 15px;
+}
+
+/* Mensagens de status */
 .sucesso {
   background: var(--ion-color-success);
   color: white;
@@ -14,4 +31,34 @@
   border-radius: 5px;
   margin: 10px 0;
   text-align: center;
+}
+
+/* Botões */
+.botoes-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+/* Link recuperação senha */
+.recuperar-senha {
+  text-align: center;
+  margin: 15px 0;
+  
+  ion-button {
+    --color: var(--ion-color-medium);
+    font-size: 0.9em;
+  }
+}
+
+/* Ajustes para mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5em;
+  }
 }

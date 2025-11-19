@@ -1,4 +1,13 @@
 <ion-content>
+  <div *ngIf="usuarioLogado" class="logout-section">
+    <div class="usuario-info">
+      <p>Logado como: <strong>{{ emailUsuario }}</strong></p>
+      <ion-button expand="block" fill="outline" size="small" (click)="fazerLogout()">
+        <ion-icon name="log-out-outline" slot="start"></ion-icon>
+        Sair
+      </ion-button>
+    </div>
+  </div>
   <div class="container">
     <!-- Se NÃO estiver logado -->
     <div *ngIf="!usuarioLogado" class="aviso-login">

@@ -1,0 +1,95 @@
+.container {
+  padding: 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  color: var(--ion-color-primary);
+  margin: 20px 0;
+}
+
+/* Status MQTT */
+.status-mqtt {
+  text-align: center;
+  margin: 15px 0;
+  font-weight: bold;
+  
+  .conectado {
+    color: var(--ion-color-success);
+  }
+  
+  .desconectado {
+    color: var(--ion-color-danger);
+  }
+}
+
+/* Display do LED */
+.led-display {
+  background: #000000;
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  margin: 25px 0;
+  text-align: center;
+  border: 3px solid var(--ion-color-primary);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  
+  p {
+    margin: 5px 0;
+  }
+  
+  .codigo-cor {
+    font-family: monospace;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #fff;
+  }
+}
+
+/* Histórico de cores */
+.historico {
+  margin: 30px 0;
+  
+  h3 {
+    color: var(--ion-color-medium);
+    font-size: 1.1em;
+  }
+}
+
+.cor-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+  padding: 10px;
+  background: var(--ion-color-light);
+  border-radius: 8px;
+}
+
+.cor-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  border: 2px solid var(--ion-color-medium);
+}
+
+/* Ajustes para mobile */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  h1 {
+    font-size: 1.5em;
+  }
+  
+  .led-display {
+    padding: 20px;
+  }
+  
+  .cor-item {
+    gap: 10px;
+  }
+}

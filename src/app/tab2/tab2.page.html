@@ -12,19 +12,20 @@
       <ion-input [(ngModel)]="senha" type="password" placeholder="Sua senha"></ion-input>
     </ion-item>
 
-    <ion-button expand="block" (click)="fazerLogin()">Entrar</ion-button>
-    <ion-button expand="block" fill="outline" (click)="criarConta()">Criar Conta</ion-button>
-
-    <ion-button expand="block" fill="clear" size="small" (click)="recuperarSenha()">
-      Esqueci minha senha
-    </ion-button>
-
-    <div *ngIf="mensagemSucesso" class="sucesso">
-      {{ mensagemSucesso }}
+    <div class="botoes-login">
+      <ion-button expand="block" (click)="fazerLogin()">Entrar</ion-button>
+      <ion-button expand="block" fill="outline" (click)="criarConta()">Criar Conta</ion-button>
     </div>
 
-    <div *ngIf="mensagemErro" class="erro">
-      {{ mensagemErro }}
+    <div class="recuperar-senha">
+      <ion-button expand="block" fill="clear" size="small" (click)="recuperarSenha()">
+        Esqueci minha senha
+      </ion-button>
+    </div>
+
+    <!-- Mensagens de status -->
+    <div *ngIf="mensagemSucesso" style="background: green; color: white; padding: 10px; border-radius: 5px; margin: 10px;">
+      {{ mensagemSucesso }}
     </div>
 
     <div *ngIf="mensagemErro" class="erro">

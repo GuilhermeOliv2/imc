@@ -27,6 +27,8 @@ export class Tab3Page implements OnInit, OnDestroy {
   coresHistorico: string[] = [];
   isConnected: boolean = false;
 
+  private topicoStatus: string = 'imc/led/status/MOSHENGA6769';
+
   ngOnInit() {
     this.conectarMQTT();
   }
@@ -37,11 +39,11 @@ export class Tab3Page implements OnInit, OnDestroy {
     this.mqttClient.on('connect', () => {
       console.log('Monitorando LED...');
       this.isConnected = true;
-      this.mqttClient.subscribe('imc/led/status');
+      this.mqttClient.subscribe(this.topicoStatus);
     });
 
     this.mqttClient.on('message', (topic: string, message: Buffer) => {
-      if (topic === 'imc/led/status') {
+      if (topic === this.topicoStatus) {
         const cor = message.toString();
         this.corAtual = cor;
         this.coresHistorico.unshift(cor);

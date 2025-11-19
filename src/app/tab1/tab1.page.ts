@@ -7,11 +7,13 @@ import {
   IonInput, 
   IonSelect, 
   IonSelectOption, 
-  IonButton 
+  IonButton,
+  IonIcon 
 } from '@ionic/angular/standalone';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NgIf } from '@angular/common';
 import mqtt from 'mqtt'; 
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -26,6 +28,7 @@ import mqtt from 'mqtt';
     IonSelect, 
     IonSelectOption, 
     IonButton,
+    IonIcon,
     FormsModule,
     NgIf
   ]
@@ -41,10 +44,15 @@ export class Tab1Page {
   usuarioLogado: boolean = false;
   emailUsuario: string = '';
 
+  private topicoComando: string = 'imc/led/MOSHENGA6769';
+
   mqttClient: any;
   isConnected: boolean = false;
 
-  constructor(private afAuth: AngularFireAuth) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {
     this.verificarLogin();
@@ -91,7 +99,7 @@ export class Tab1Page {
     this.mostrarResultado = true;
 
     if (this.mqttClient && this.isConnected) {
-      this.mqttClient.publish('imc/led', 'mudar_cor');
+      this.mqttClient.publish( this.topicoComando, 'mudar_cor');
       console.log('🎨 Comando enviado para LED RGB!');
     }
   }
@@ -114,6 +122,22 @@ export class Tab1Page {
       return false;
     }
     return true;
+  }
+
+  async fazerLogout() {
+    try {
+      await this.afAuth.signOut();
+      
+      this.usuarioLogado = false;
+      this.emailUsuario = '';
+      console.log('Logout realizado com sucesso!');
+      setTimeout(() => {
+        this.navCtrl.navigateRoot('/tabs/tab2');
+      }, 500);
+    } catch (error) {
+      console.error('Erro no logout:', error);
+      alert('Erro ao fazer logout. Tente novamente.');
+    }
   }
 
   voltar() {
